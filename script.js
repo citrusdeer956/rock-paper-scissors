@@ -4,10 +4,10 @@ let userInput = prompt('Rock, Paper, or Scissors?');
 userInput = userInput.toLowerCase();
 
 const getUserChoice = userInput => {
-    if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors') {
+    if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors' || userInput === 'bomb') {
         return userInput;
     } else {
-        console.log('ERROR');
+        return 'N/A';
     }
 }
 
@@ -52,6 +52,9 @@ function determineWinner(userChoice, computerChoice) {
             return 'You have won!';
         }
     }
+    if (userChoice === 'bomb'){
+        return 'KABOOM! You got a secret ending!';
+    }
 }
 
 function playGame() {
@@ -60,7 +63,7 @@ function playGame() {
     console.log('You threw: ' + userChoice);
     console.log('Computer threw: ' + computerChoice);
 
-    console.log(determineWinner(userChoice, computerChoice));
+    alert(determineWinner(userChoice, computerChoice));
 }
 
 playGame();
