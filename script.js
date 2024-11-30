@@ -1,17 +1,5 @@
-let playerScore = 0;
-let computerScore = 0;
-let userInput = prompt('Rock, Paper, or Scissors?');
-userInput = userInput.toLowerCase();
 
-const getUserChoice = userInput => {
-    if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors' || userInput === 'bomb') {
-        return userInput;
-    } else {
-        return 'N/A';
-    }
-}
-
-
+//Generates computer choice and returns value
 function getComputerChoice() {
     const compChoice = Math.floor(Math.random() * 3);
     switch (compChoice) {
@@ -22,48 +10,83 @@ function getComputerChoice() {
         case 2:
             return 'scissors';
     }
-}
-
-
-
-function determineWinner(userChoice, computerChoice) {
-    if (userChoice === computerChoice){
-        return  "It's a tie!";
-    }
-
-    if (userChoice === 'rock'){
-        if (computerChoice === 'paper'){
-            return 'Computer has won!';
-        } else {
-            return 'You have won!';
-        }
-    }
-    if (userChoice === 'paper'){
-        if (computerChoice === 'scissors'){
-            return 'Computer has won!';
-        } else {
-            return 'You have won!';
-        }
-    }
-    if (userChoice === 'scissors'){
-        if (computerChoice === 'rock'){
-            return 'Computer has won!';
-        } else {
-            return 'You have won!';
-        }
-    }
-    if (userChoice === 'bomb'){
-        return 'KABOOM! You got a secret ending!';
-    }
-}
+};
+ 
 
 function playGame() {
-    const userChoice = getUserChoice(userInput);
-    const computerChoice = getComputerChoice();
-    console.log('You threw: ' + userChoice);
-    console.log('Computer threw: ' + computerChoice);
+    let playerScore = 0;
+    let computerScore = 0;
 
-    alert(determineWinner(userChoice, computerChoice));
-}
 
-playGame();
+    //plays one round of the game
+    function playRound(userChoice, computerChoice) {
+        const choice = document.querySelector('#choice');
+        while (userChoice === computerChoice){
+            choice.textContent = `It's a tie! Try Again!`
+            break;
+        }
+        if (userChoice === 'rock' && computerChoice === 'scissors' || userChoice === 'paper' && computerChoice === 'rock' || userChoice === 'scissors' && computerChoice === 'paper'){
+            choice.textContent = `Human wins! ${userChoice} beats ${computerChoice}!`
+            playerScore++;
+        }
+        if (userChoice === 'paper' && computerChoice === 'scissors' || userChoice === 'scissors' && computerChoice === 'rock' || userChoice === 'paper' && computerChoice === 'scissors'){
+            choice.textContent = `Computer wins! ${computerChoice} beats ${userChoice}!`
+            computerScore++;
+        }
+    };
+
+    const menu = document.querySelector('.menu');
+
+    // restarts game
+    function restartGame() {
+        const restartButton = document.createElement('button');
+        restartButton.textContent = "Play again?";
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) => {
+            menu.removeChild(button);
+        });
+        menu.appendChild(restartButton);
+        restartButton.addEventListener('click', () => {
+            location.reload();
+        }) 
+    }
+
+    //check if either player reaches score of 5
+    function playResults(playerScore, computerScore){
+        const results = document.querySelector('#results');
+        results.textContent= `You: ${playerScore} Computer: ${computerScore}`;
+        if (playerScore === 5){
+            results.textContent = `YOU WON! ${playerScore} versus ${computerScore}.`;
+            restartGame();
+        } else if (computerScore === 5) {
+            results.textContent = `YOU LOST! ${computerScore} versus ${playerScore}.`
+            restartGame();
+        }
+        };
+
+    
+    //changes userChoice pending on user input    
+    menu.addEventListener('click', (event) => {
+    let target = event.target;
+    let computerChoice = getComputerChoice();
+    let userChoice = '';
+
+    switch(target.id) {
+        case 'rock':
+            userChoice = 'rock';
+            break;
+        case 'paper':
+            userChoice = 'paper';
+            break;
+        case 'scissors':
+            userChoice = 'scissors';
+            break;
+    }
+    playRound(userChoice,computerChoice);
+    playResults(playerScore,computerScore);
+});
+};
+
+
+
+ playGame();
