@@ -26,11 +26,11 @@ function playGame() {
             break;
         }
         if (userChoice === 'rock' && computerChoice === 'scissors' || userChoice === 'paper' && computerChoice === 'rock' || userChoice === 'scissors' && computerChoice === 'paper'){
-            choice.textContent = `Human wins! ${userChoice} beats ${computerChoice}!`
+            choice.textContent = `Human wins! ${userChoice.toUpperCase()} beats ${computerChoice.toUpperCase()}!`
             playerScore++;
         }
         if (userChoice === 'paper' && computerChoice === 'scissors' || userChoice === 'scissors' && computerChoice === 'rock' || userChoice === 'paper' && computerChoice === 'scissors'){
-            choice.textContent = `Computer wins! ${computerChoice} beats ${userChoice}!`
+            choice.textContent = `Computer wins! ${computerChoice.toUpperCase()} beats ${userChoice.toUpperCase()}!`
             computerScore++;
         }
     };
