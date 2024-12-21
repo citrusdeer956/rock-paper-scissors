@@ -12,7 +12,7 @@ function getComputerChoice() {
     }
 };
  
-
+// Main Game
 function playGame() {
     let playerScore = 0;
     let computerScore = 0;
