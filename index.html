@@ -46,7 +46,7 @@
     <!--Main Display with Score-->
     <div class="main-display">
     <div class="score-display">
-        <img id="title-card" onclick="startGame()" src="/imgs/titlecard_temp.png">
+        <img id="title-card" onclick="noTitle()" src="/imgs/titlecard_temp.png">
         <h1 id="results">ROCK PAPER SCISSORS</h1>
         <p id="choice">Choose your weapon:</p>
     </div>
@@ -58,9 +58,6 @@
         <button id="scissors" type="button">SCISSORS</button>
     </div>
     <script src="script.js">
-        function startGame () {
-        document.getElementById("title-card").style.display = "none";
-    };
     </script>
 </body>
 </html>

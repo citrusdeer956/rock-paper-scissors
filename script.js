@@ -17,6 +17,10 @@ function playGame() {
     let playerScore = 0;
     let computerScore = 0;
    
+    function noTitle() {
+        const titleCard = document.getElementById("title-card");
+        titleCard.remove(); 
+    };
 
     //plays one round of the game
     function playRound(userChoice, computerChoice) {
@@ -84,7 +88,7 @@ function playGame() {
     }
     playRound(userChoice,computerChoice);
     playResults(playerScore,computerScore);
-    startGame();
+    noTitle();
 });
 };
 
