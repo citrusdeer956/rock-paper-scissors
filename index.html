@@ -14,6 +14,7 @@
         }
         body{
             background-color: #e8cea1;
+            margin-top: 100px;
         }
         h2 {
             font-weight: 900;
@@ -33,8 +34,11 @@
             text-align: center;
         }
         button {
-            width: 150px;
+            width: 120px;
             height: 50px;
+            border-style: groove;
+            border-color: #241d12;
+            background-color: #a89575;
         }
     </style>
 </head>
@@ -42,6 +46,7 @@
     <!--Main Display with Score-->
     <div class="main-display">
     <div class="score-display">
+        <img id="title-card" onclick="startGame()" src="/imgs/titlecard_temp.png">
         <h1 id="results">ROCK PAPER SCISSORS</h1>
         <p id="choice">Choose your weapon:</p>
     </div>
@@ -52,6 +57,10 @@
         <button id="paper" type="button">PAPER</button>
         <button id="scissors" type="button">SCISSORS</button>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js">
+        function startGame () {
+        document.getElementById("title-card").style.display = "none";
+    };
+    </script>
 </body>
 </html>

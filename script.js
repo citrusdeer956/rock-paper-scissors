@@ -16,7 +16,7 @@ function getComputerChoice() {
 function playGame() {
     let playerScore = 0;
     let computerScore = 0;
-
+   
 
     //plays one round of the game
     function playRound(userChoice, computerChoice) {
@@ -84,6 +84,7 @@ function playGame() {
     }
     playRound(userChoice,computerChoice);
     playResults(playerScore,computerScore);
+    startGame();
 });
 };
 
