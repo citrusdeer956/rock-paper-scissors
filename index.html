@@ -19,6 +19,9 @@
         h2 {
             font-weight: 900;
         }
+        p{
+            font-size: 20pt;
+        }
         .main-display {
             display: flex;
             justify-content: center;
@@ -34,11 +37,18 @@
             text-align: center;
         }
         button {
+            font-family: 'Pixel Operator';
+            font-size: 16px;
             width: 120px;
             height: 50px;
             border-style: groove;
+            border-radius: 12px;
             border-color: #241d12;
             background-color: #a89575;
+        }
+        button:hover {
+            background-color: #241d12;
+            color: aliceblue;
         }
     </style>
 </head>
@@ -47,7 +57,7 @@
     <div class="main-display">
     <div class="score-display">
         <img id="title-card" onclick="noTitle()" src="/imgs/titlecard_temp.png">
-        <h1 id="results">ROCK PAPER SCISSORS</h1>
+        <h1 id="results"></h1>
         <p id="choice">Choose your weapon:</p>
     </div>
     </div>
