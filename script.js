@@ -26,7 +26,7 @@ let gameStarted = false; // tracks if game has started
 
         const rand = Math.random() * 100;
         console.log(`Random number: ${rand}`); //debugging
-        if (rand <= 50){
+        if (rand <= 10){
             console.log('Bomb button created'); // debugging
             const bombButton = document.createElement('button');
             bombButton.textContent = 'bomb?';
@@ -73,6 +73,7 @@ function playGame() {
             alert('You got the secret ending!');
             restartGame();
         }
+        bombButtonChance();
     };
 
     const menu = document.querySelector('.menu');
@@ -130,7 +131,6 @@ function playGame() {
     playRound(userChoice,computerChoice);
     playResults(playerScore,computerScore);
     noTitle();
-    bombButtonChance();
 });
 };
 
