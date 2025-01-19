@@ -11,6 +11,36 @@ function getComputerChoice() {
             return 'scissors';
     }
 };
+
+let gameStarted = false; // tracks if game has started
+
+    function bombButtonChance() {
+        if (!gameStarted) return;
+
+        // remove any existing bomb button to avoid duplicates
+        const existingBombButton = document.getElementById('bomb');
+        if (existingBombButton) {
+            existingBombButton.remove();
+        }
+
+
+        const rand = Math.random() * 100;
+        console.log(`Random number: ${rand}`); //debugging
+        if (rand <= 50){
+            console.log('Bomb button created'); // debugging
+            const bombButton = document.createElement('button');
+            bombButton.textContent = 'bomb?';
+            bombButton.id = 'bomb';
+            const menu = document.querySelector('.menu');
+            menu.appendChild(bombButton);
+            
+            //event listener for when bomb button is clicked
+            bombButton.addEventListener('click', () => {
+                alert('you found the secret ending!');
+                location.reload();
+            })
+        }
+    };
  
 // Main Game
 function playGame() {
@@ -22,20 +52,26 @@ function playGame() {
         titleCard.remove(); 
     };
 
+    bombButtonChance();
+
     //plays one round of the game
     function playRound(userChoice, computerChoice) {
         const choice = document.querySelector('#choice');
-        while (userChoice === computerChoice){
+        if (userChoice === computerChoice){
             choice.textContent = `It's a tie! Try Again!`
-            break;
+            return;
         }
         if (userChoice === 'rock' && computerChoice === 'scissors' || userChoice === 'paper' && computerChoice === 'rock' || userChoice === 'scissors' && computerChoice === 'paper'){
             choice.textContent = `Human wins! ${userChoice.toUpperCase()} beats ${computerChoice.toUpperCase()}!`
             playerScore++;
         }
-        if (userChoice === 'paper' && computerChoice === 'scissors' || userChoice === 'scissors' && computerChoice === 'rock' || userChoice === 'paper' && computerChoice === 'scissors'){
+        else if (userChoice === 'paper' && computerChoice === 'scissors' || userChoice === 'scissors' && computerChoice === 'rock' || userChoice === 'paper' && computerChoice === 'scissors'){
             choice.textContent = `Computer wins! ${computerChoice.toUpperCase()} beats ${userChoice.toUpperCase()}!`
             computerScore++;
+        }
+        else if (userChoice === 'bomb'){
+            alert('You got the secret ending!');
+            restartGame();
         }
     };
 
@@ -51,6 +87,7 @@ function playGame() {
         });
         menu.appendChild(restartButton);
         restartButton.addEventListener('click', () => {
+            gameStarted = true;
             location.reload();
         }) 
     }
@@ -85,10 +122,15 @@ function playGame() {
         case 'scissors':
             userChoice = 'scissors';
             break;
+        case 'bomb':
+            userChoice = 'bomb';
+            break;
     }
+    gameStarted = true;
     playRound(userChoice,computerChoice);
     playResults(playerScore,computerScore);
     noTitle();
+    bombButtonChance();
 });
 };
 
