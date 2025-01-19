@@ -29,15 +29,14 @@ let gameStarted = false; // tracks if game has started
         if (rand <= 10){
             console.log('Bomb button created'); // debugging
             const bombButton = document.createElement('button');
-            bombButton.textContent = 'bomb?';
+            bombButton.textContent = 'BOMB?';
             bombButton.id = 'bomb';
             const menu = document.querySelector('.menu');
             menu.appendChild(bombButton);
             
             //event listener for when bomb button is clicked
             bombButton.addEventListener('click', () => {
-                alert('you found the secret ending!');
-                location.reload();
+             userChoice = 'bomb';   
             })
         }
     };
@@ -68,10 +67,8 @@ function playGame() {
         else if (userChoice === 'paper' && computerChoice === 'scissors' || userChoice === 'scissors' && computerChoice === 'rock' || userChoice === 'paper' && computerChoice === 'scissors'){
             choice.textContent = `Computer wins! ${computerChoice.toUpperCase()} beats ${userChoice.toUpperCase()}!`
             computerScore++;
-        }
-        else if (userChoice === 'bomb'){
-            alert('You got the secret ending!');
-            restartGame();
+        } else if (userChoice === 'bomb'){
+            choice.textContent = 'You found the secret ending!';
         }
         bombButtonChance();
     };
@@ -102,6 +99,9 @@ function playGame() {
             restartGame();
         } else if (computerScore === 5) {
             results.textContent = `YOU LOST! ${computerScore} versus ${playerScore}.`
+            restartGame();
+        } else if (userChoice === 'bomb') {
+            results.textContent = "SECRET ENDING! KABOOM!!";
             restartGame();
         }
         };
