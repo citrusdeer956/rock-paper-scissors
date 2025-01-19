@@ -15,7 +15,7 @@ function getComputerChoice() {
 let gameStarted = false; // tracks if game has started
 
     function bombButtonChance() {
-        if (!gameStarted) return;
+        if (!gameStarted) return; // prevents button from appearing first instance
 
         // remove any existing bomb button to avoid duplicates
         const existingBombButton = document.getElementById('bomb');
@@ -25,9 +25,9 @@ let gameStarted = false; // tracks if game has started
 
 
         const rand = Math.random() * 100;
-        console.log(`Random number: ${rand}`); //debugging
+        
         if (rand <= 10){
-            console.log('Bomb button created'); // debugging
+            
             const bombButton = document.createElement('button');
             bombButton.textContent = 'BOMB?';
             bombButton.id = 'bomb';
@@ -46,9 +46,12 @@ function playGame() {
     let playerScore = 0;
     let computerScore = 0;
    
+    //removes title card when player starts game
     function noTitle() {
-        const titleCard = document.getElementById("title-card");
-        titleCard.remove(); 
+        if (gameStarted) {
+            const titleCard = document.getElementById("title-card");
+            titleCard.remove(); 
+        }
     };
 
     bombButtonChance();
