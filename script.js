@@ -31,8 +31,8 @@ let gameStarted = false; // tracks if game has started
             const bombButton = document.createElement('button');
             bombButton.textContent = 'BOMB?';
             bombButton.id = 'bomb';
-            const menu = document.querySelector('.menu');
-            menu.appendChild(bombButton);
+            const secretBtn = document.querySelector('.menu');
+            secretBtn.appendChild(bombButton);
             
             //event listener for when bomb button is clicked
             bombButton.addEventListener('click', () => {
