@@ -48,9 +48,9 @@ function playGame() {
    
     //removes title card when player starts game
     function noTitle() {
-        if (gameStarted) {
-            const titleCard = document.getElementById("title-card");
-            titleCard.remove(); 
+        const titleCard = document.getElementById("title-card");
+        if(gameStarted){
+            titleCard.remove();    
         }
     };
 
